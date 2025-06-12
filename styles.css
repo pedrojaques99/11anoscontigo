@@ -34,17 +34,42 @@ body {
     width: 100%;
     height: 100vh;
     background-color: var(--color-background);
+    background-image: url('public/images/bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    transition: opacity 0.5s ease;
+    transition: opacity 1.2s cubic-bezier(0.77, 0, 0.175, 1), background-color 1.2s cubic-bezier(0.77, 0, 0.175, 1), background-image 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+    overflow: hidden;
+}
+
+.intro-screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.72);
+    backdrop-filter: blur(6px);
+    z-index: 1;
+    pointer-events: none;
+    transition: background 1.2s cubic-bezier(0.77, 0, 0.175, 1), backdrop-filter 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.intro-screen > * {
+    position: relative;
+    z-index: 2;
 }
 
 .intro-screen.hidden {
     opacity: 0;
     pointer-events: none;
+    transition: opacity 1.2s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 .counter-container {
@@ -583,6 +608,13 @@ body {
         margin-left: 0.5rem;
         margin-right: 0.5rem;
     }
+    .signature-container {
+        margin: 1.5rem 0 1rem 0;
+    }
+    .signature-container img {
+        max-width: 180px;
+        width: 90vw;
+    }
 }
 
 #music-toggle {
@@ -619,7 +651,7 @@ body {
     width: 100vw;
     height: 100vh;
     pointer-events: none;
-    z-index: 100;
+    z-index: 1500;
     background:
         linear-gradient(120deg, rgba(0,0,0,0.10) 10%, rgba(0,0,0,0.02) 40%, rgba(0,0,0,0.13) 70%, rgba(0,0,0,0.05) 100%),
         linear-gradient(60deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.03) 50%, rgba(0,0,0,0.12) 100%);
@@ -673,4 +705,18 @@ body {
     .corner-heart.top-right { top: 6px; right: 6px; }
     .corner-heart.bottom-left { bottom: 6px; left: 6px; }
     .corner-heart.bottom-right { bottom: 6px; right: 6px; }
+}
+
+.signature-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2.5rem 0 1.5rem 0;
+}
+.signature-container img {
+    max-width: 260px;
+    width: 80vw;
+    height: auto;
+    opacity: 0.85;
+    filter: drop-shadow(0 2px 8px rgba(128,0,32,0.08));
 } 
